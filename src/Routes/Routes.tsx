@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router';
 //pages
 import { MainPage } from '../pages/MainPage';
 import { CartPage } from '../pages/CartPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
 
 export const Routes = () => {
   return (
@@ -10,6 +11,7 @@ export const Routes = () => {
       <Switch>
         <Route path='/' exact component={MainPage} />
         <Route path='/cart' exact component={CartPage} />
+        <Route path='/checkout' exact component={CheckoutPage} />
       </Switch>
     </>
   );
