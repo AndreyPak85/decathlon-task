@@ -5,7 +5,7 @@ import { Header } from '../../components/Header';
 export const CheckoutPage = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState<null | number>('');
   const [delivery, setDelivery] = useState('');
   const [deliveryOperator, setDeliveryOperator] = useState('');
   const [payment, setPayment] = useState([]);
@@ -19,7 +19,7 @@ export const CheckoutPage = () => {
     console.log(`payment ${payment}`);
     setName('');
     setSurname('');
-    setPhone();
+    setPhone('');
     setDelivery('');
     setDeliveryOperator('');
     setPayment([]);
@@ -55,10 +55,10 @@ export const CheckoutPage = () => {
               <Form.Group as={Col}>
                 <Form.Label>Phone</Form.Label>
                 <Form.Control
-                  type='number'
+                  type='text'
                   placeholder='phone'
                   value={phone}
-                  onChange={(e) => setPhone(+e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </Form.Group>
             </Row>
