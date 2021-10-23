@@ -1,7 +1,9 @@
 import { useSelector, RootStateOrAny } from 'react-redux';
+import { useHistory } from 'react-router';
 import { icons } from '../../utils/icons';
 
 export const SearchBlock = () => {
+  const history = useHistory();
   const cart = useSelector((state: RootStateOrAny) => state.products.cart);
   return (
     <>
@@ -13,7 +15,7 @@ export const SearchBlock = () => {
           <input className='header__search__input' type='text' />
         </div>
         <div className='header__cart'>
-          <img src={icons.cart} alt='' />
+          <img src={icons.cart} alt='' onClick={() => history.push('/cart')} />
           <div className='header__cart__count'>{cart.length}</div>
         </div>
       </div>

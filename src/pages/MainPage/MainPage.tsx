@@ -4,14 +4,18 @@ import { CardColumns } from 'react-bootstrap';
 //components
 import { Header } from '../../components/Header';
 import { ProductCard } from '../../components/ProductCard';
+import { Loader } from '../../components/Loader';
 //api thunks
 import { asyncGetProductsThunk } from '../../store/Products/productsThunk';
 //actions
 import { addToCart } from '../../store/Products/productsSlice';
+import { is } from 'immer/dist/internal';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(
+    (state: RootStateOrAny) => state.products.isLoading
+  );
   const products = useSelector(
     (state: RootStateOrAny) => state.products.products
   );
@@ -19,6 +23,8 @@ export const MainPage = () => {
   useEffect(() => {
     dispatch(asyncGetProductsThunk());
   }, []);
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
