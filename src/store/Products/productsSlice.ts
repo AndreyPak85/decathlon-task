@@ -18,8 +18,20 @@ export const productsSlice = createSlice({
   initialState: {
     isLoading: false,
     products: productsState,
+    cart: [],
   },
-  reducers: {},
+  reducers: {
+    addToCart(state, action) {
+      if (state.cart.some((item) => item.product.id === action.payload.id)) {
+        const indx = state.cart.findIndex(
+          (item) => item.product.id === action.payload.id
+        );
+        ++state.cart[indx].count;
+      } else {
+        state.cart.push({ product: action.payload, count: 1 });
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(asyncGetProductsThunk.pending, (state, action) => {
       state.isLoading = true;
@@ -33,3 +45,4 @@ export const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
+export const { addToCart } = productsSlice.actions;

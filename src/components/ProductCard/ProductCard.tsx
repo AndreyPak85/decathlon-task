@@ -7,6 +7,7 @@ interface IProductCardProps {
   description: string;
   image: string;
   price: number;
+  onAddToCart: (id: number) => void;
 }
 
 export const ProductCard: FC<IProductCardProps> = ({
@@ -15,6 +16,7 @@ export const ProductCard: FC<IProductCardProps> = ({
   description,
   image,
   price,
+  onAddToCart,
 }) => {
   return (
     <>
@@ -25,7 +27,10 @@ export const ProductCard: FC<IProductCardProps> = ({
           <Card.Text>{description}</Card.Text>
         </Card.Body>
         <Card.Footer className='d-flex align-items-center justify-content-between'>
-          {price + '$'} <button className='btn-add-cart'>Add to cart</button>
+          {price + '$'}{' '}
+          <button className='btn-add-cart' onClick={() => onAddToCart(id)}>
+            Add to cart
+          </button>
         </Card.Footer>
       </Card>
     </>

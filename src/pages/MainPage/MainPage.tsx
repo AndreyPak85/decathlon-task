@@ -6,6 +6,8 @@ import { Header } from '../../components/Header';
 import { ProductCard } from '../../components/ProductCard';
 //api thunks
 import { asyncGetProductsThunk } from '../../store/Products/productsThunk';
+//actions
+import { addToCart } from '../../store/Products/productsSlice';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ export const MainPage = () => {
                 description={product.description}
                 image={product.image}
                 price={product.price}
+                onAddToCart={(id: number) => dispatch(addToCart(product))}
               />
             ))}
           </CardColumns>
