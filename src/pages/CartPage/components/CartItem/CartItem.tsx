@@ -2,19 +2,25 @@ import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 interface ICardItemProps {
+  id: number;
   image: string;
   title: string;
   description: string;
   count: number;
   price: number;
+  onPlus: (id: number) => void;
+  onMinus: (id: number) => void;
 }
 
 export const CartItem: FC<ICardItemProps> = ({
+  id,
   image,
   title,
   description,
   count,
   price,
+  onPlus,
+  onMinus,
 }) => {
   return (
     <>
@@ -33,16 +39,18 @@ export const CartItem: FC<ICardItemProps> = ({
           </Col>
           <Col lg={2} md={2} sm={2} xl={2}>
             <div className='cart-item__count text-center'>
-              <button>-</button>
+              <button onClick={() => onMinus(id)}>-</button>
               <span className='cart-item__count__value'>{count}</span>
-              <button>+</button>
+              <button onClick={() => onPlus(id)}>+</button>
             </div>
           </Col>
           <Col lg={1} md={1} sm={1} xl={1}>
             <div className='cart-item__price text-center'>{price}</div>
           </Col>
           <Col lg={2} md={2} sm={2} xl={2}>
-            <div className='cart-item__price text-center'>{price * count}</div>
+            <div className='cart-item__price text-center'>
+              {(price * count).toFixed(2)}
+            </div>
           </Col>
         </Row>
       </div>

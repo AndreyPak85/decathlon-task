@@ -1,5 +1,6 @@
 import { asyncGetProductsThunk } from './productsThunk';
 import { createSlice } from '@reduxjs/toolkit';
+import { env } from 'process';
 
 export interface IProducts {
   category: string;
@@ -31,6 +32,22 @@ export const productsSlice = createSlice({
         state.cart.push({ product: action.payload, count: 1 });
       }
     },
+    plusCount(state, action) {
+      const indx = state.cart.findIndex(
+        (item) => item.product.id === action.payload
+      );
+      ++state.cart[indx].count;
+    },
+    minusCount(state, action) {
+      const indx = state.cart.findIndex(
+        (item) => item.product.id === action.payload
+      );
+      if (state.cart[indx].count === 1) {
+        state.cart.splice(indx, 1);
+      } else {
+        --state.cart[indx].count;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncGetProductsThunk.pending, (state, action) => {
@@ -45,4 +62,4 @@ export const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
-export const { addToCart } = productsSlice.actions;
+export const { addToCart, plusCount, minusCount } = productsSlice.actions;
