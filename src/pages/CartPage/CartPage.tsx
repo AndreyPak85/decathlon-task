@@ -15,7 +15,7 @@ export const CartPage = () => {
   const [sum, setSum] = useState(0);
   useEffect(() => {
     if (cartItems.length > 0) {
-      let sumArray = [];
+      const sumArray: number[] = [];
       cartItems.forEach((element: any) => {
         sumArray.push(element.product.price * element.count);
       });
