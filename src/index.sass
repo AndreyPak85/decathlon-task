@@ -1,0 +1,36 @@
+@import './styles/variables.sass'
+//components
+@import './components/Header/Header.sass'
+@import './components/Navbar/Navbar.sass'
+@import './components/ProductCard/ProductCard.sass'
+@import './pages/CartPage/components/CartItem/CartItem.sass'
+//pages
+@import './pages/MainPage/MainPage.sass'
+@import './pages/CartPage/CartPage.sass'
+@import './pages/CheckoutPage/CheckoutPage.sass'
+
+*, html, body
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  font-family: 'Roboto', sans-serif
+  font-size: 16px
+
+.container
+  margin: 0 auto
+  padding: 0
+  width: 1220px
+  height: 100%
+
+.app
+  height: 100vh
+  width: 100vw
+
+.active-link
+  bakcgroung: gray
+  font-weight: 600
+  border-bottom: 1px solid
+
+.bb-1px
+  width: 100%
+  border-bottom: 1px solid $border
