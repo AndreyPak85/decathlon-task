@@ -1,6 +1,6 @@
 #Decathlon Task
 
-## Libraries in project:
+##Libraries in project:
 
 - Redux-toolkit
 - React-router
@@ -41,3 +41,4 @@
 
 4. npm run start
 ```
+
