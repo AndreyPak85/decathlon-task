@@ -5,17 +5,17 @@ import { Header } from '../../components/Header';
 export const CheckoutPage = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [phone, setPhone] = useState<null | number>('');
+  const [phone, setPhone] = useState('');
   const [delivery, setDelivery] = useState('');
   const [deliveryOperator, setDeliveryOperator] = useState('');
-  const [payment, setPayment] = useState([]);
+  const [payment, setPayment] = useState<any[]>([]);
 
   const handleSubmit = () => {
     console.log(`name ${name}`);
     console.log(`surname ${surname}`);
     console.log(`phone ${phone}`);
     console.log(`delivery ${delivery}`);
-    console.log(`payment ${deliveryOperator}`);
+    console.log(`delivery operator ${deliveryOperator}`);
     console.log(`payment ${payment}`);
     setName('');
     setSurname('');
@@ -100,15 +100,14 @@ export const CheckoutPage = () => {
                   as='select'
                   value={payment}
                   multiple
-                  onChange={(e) =>
+                  onChange={(e: any) =>
                     setPayment(
                       [].slice
                         .call(e.target.selectedOptions)
-                        .map((item) => item.value)
+                        .map((item: any) => item.value)
                     )
                   }
                 >
-                  <option value={null}></option>
                   <option value='sber'> sber</option>
                   <option value='kaspi'>доставка</option>
                   <option value='qiwi'>постамат</option>

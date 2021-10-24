@@ -12,20 +12,28 @@ export interface IProducts {
   rating: object;
 }
 
+interface ICart {
+  product: IProducts;
+  count: number;
+}
+
 const productsState: IProducts[] = [];
+const cartState: ICart[] = [];
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     isLoading: false,
     products: productsState,
-    cart: [],
+    cart: cartState,
   },
   reducers: {
     addToCart(state, action) {
-      if (state.cart.some((item) => item.product.id === action.payload.id)) {
+      if (
+        state.cart.some((item: any) => item.product.id === action.payload.id)
+      ) {
         const indx = state.cart.findIndex(
-          (item) => item.product.id === action.payload.id
+          (item: any) => item.product.id === action.payload.id
         );
         ++state.cart[indx].count;
       } else {
@@ -34,13 +42,13 @@ export const productsSlice = createSlice({
     },
     plusCount(state, action) {
       const indx = state.cart.findIndex(
-        (item) => item.product.id === action.payload
+        (item: any) => item.product.id === action.payload
       );
       ++state.cart[indx].count;
     },
     minusCount(state, action) {
       const indx = state.cart.findIndex(
-        (item) => item.product.id === action.payload
+        (item: any) => item.product.id === action.payload
       );
       if (state.cart[indx].count === 1) {
         state.cart.splice(indx, 1);
