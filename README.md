@@ -42,3 +42,9 @@
 4. npm run start
 ```
 
+##Альтернативный запуск (требуется Docker):
+
+```
+docker run -it -p 3000:3000 013274418/decathlon
+
+```
